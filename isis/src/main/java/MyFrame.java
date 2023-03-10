@@ -33,6 +33,7 @@ public class MyFrame extends JFrame{
 
         JPanel panelbtn = new JPanel();
         JButton button = new JButton("Valider la commande");
+        JButton annul = new JButton("Annuler la commande");
         
 		button.setOpaque(true);
 		button.setBorderPainted(false);
@@ -40,11 +41,22 @@ public class MyFrame extends JFrame{
 		Font font2 = new Font("Arial", Font.BOLD, 15);
 		button.setFont(font2);
 		
+		annul.setOpaque(true);
+		annul.setBorderPainted(false);
+		annul.setBackground(Color.RED);
+		annul.setFont(font2);
+		
 		panelbtn.add(button);
+		panelbtn.add(annul);
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Commande validé");
+				System.out.println("Commande validée");
+			}
+		});
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Commande annulée");
 			}
 		});
 
