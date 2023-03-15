@@ -6,12 +6,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 
 public class MyFrame extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel container = new JPanel();
+	private Controller controller=new Controller(this);
+	private ArrayList<MyPanels> panels = new ArrayList<MyPanels>();
 
 	public MyFrame() {
 		super();
@@ -27,49 +31,58 @@ public class MyFrame extends JFrame{
 
 		this.setLayout(null); //null pour pouvoir recadrer librement
 
-		JLabel restaurant = new JLabel ("Ratatouille", JLabel.CENTER); // j'aimerai le texte soit au centre mais erreur si .CENTER du au HorizontalAlignement
+		JLabel restaurant = new JLabel ("Prima Java", JLabel.CENTER); // j'aimerai le texte soit au centre mais erreur si .CENTER du au HorizontalAlignement
 		Font font = new Font("Mistral", Font.ITALIC, 40);
 		restaurant.setFont(font);
 
-        JPanel panelbtn = new JPanel();
-        JButton button = new JButton("Valider la commande");
-        JButton annul = new JButton("Annuler la commande");
-        
+		JPanel panelbtn = new JPanel();
+		JButton button = new JButton("Valider le menu");
+		JButton annul = new JButton("Annuler le menu");
+
 		button.setOpaque(true);
 		button.setBorderPainted(false);
 		button.setBackground(Color.GREEN);
 		Font font2 = new Font("Arial", Font.BOLD, 15);
 		button.setFont(font2);
-		
+
 		annul.setOpaque(true);
 		annul.setBorderPainted(false);
 		annul.setBackground(Color.RED);
 		annul.setFont(font2);
-		
+
 		panelbtn.add(button);
 		panelbtn.add(annul);
-		
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Commande validée");
-			}
-		});
-		button.addActionListener(new ActionListener() {
+
+		button.addActionListener(controller);
+		annul.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Commande annulée");
 			}
 		});
 
-			container.setLayout(new GridLayout(0,1));
-			container.add(restaurant);
-			container.add(new MyPanels("Entrées","Quantité :"));
-			container.add(new MyPanels("Plats", "Quantité :"));
-			container.add(new MyPanels("Desserts", "Quantité :"));
-			container.add(panelbtn);
+		container.setLayout(new GridLayout(0,1));
+		container.add(restaurant);
 
-			//container.add(nom, BorderLayout.NORTH);
-			this.add(container);
-			this.setContentPane(container);
-			this.setVisible(true); 
+		panels.add(new MyPanels("Entrées","Quantité :"));
+		panels.add(new MyPanels("Plats", "Quantité :"));
+		panels.add(new MyPanels("Desserts", "Quantité :"));
+
+		for (int i=0; i<3; i++) {
+			container.add(panels.get(i));
 		}
+		container.add(panelbtn);
+
+		//container.add(nom, BorderLayout.NORTH);
+		this.add(container);
+		this.setContentPane(container);
+		this.setVisible(true); 
 	}
+	public String getText() {
+		String ch = ("{");
+		for (int i=0; i<3; i++) {
+			ch+= System.lineSeparator() +"\t " + panels.get(i).getText() + ",";
+		}
+		ch=ch.substring(0, ch.length()-2)+"}";
+		return ch;
+	}
+}
