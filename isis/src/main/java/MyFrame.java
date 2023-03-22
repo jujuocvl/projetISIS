@@ -36,29 +36,25 @@ public class MyFrame extends JFrame{
 		restaurant.setFont(font);
 
 		JPanel panelbtn = new JPanel();
-		JButton button = new JButton("Valider le menu");
+		JButton valid = new JButton("Valider le menu");
 		JButton annul = new JButton("Annuler le menu");
 
-		button.setOpaque(true);
-		button.setBorderPainted(false);
-		button.setBackground(Color.GREEN);
+		valid.setOpaque(true);
+		valid.setBorderPainted(false);
+		valid.setBackground(Color.GREEN);
 		Font font2 = new Font("Arial", Font.BOLD, 15);
-		button.setFont(font2);
+		valid.setFont(font2);
 
 		annul.setOpaque(true);
 		annul.setBorderPainted(false);
 		annul.setBackground(Color.RED);
 		annul.setFont(font2);
 
-		panelbtn.add(button);
+		panelbtn.add(valid);
 		panelbtn.add(annul);
 
-		button.addActionListener(controller);
-		annul.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Commande annulée");
-			}
-		});
+		valid.addActionListener(controller);
+		annul.addActionListener(controller); 
 
 		container.setLayout(new GridLayout(0,1));
 		container.add(restaurant);
@@ -85,4 +81,13 @@ public class MyFrame extends JFrame{
 		ch=ch.substring(0, ch.length()-2)+"}";
 		return ch;
 	}
+
+	public void annuler() {
+		for (MyPanels p: panels) {
+			p.annuler();
+		}
+		// TODO Auto-generated method stub
+		
+	}
+
 }

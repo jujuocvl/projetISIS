@@ -45,7 +45,7 @@ public class MyPanels extends JPanel {
 		for (int i=0; i<nb; i++) {
 			if(sections.get(i).getText()!=null) {
 				ch+= System.lineSeparator() +"\t {" + System.lineSeparator() + "\t \t" + "\"id\": " + Integer.toString(i+1) +","
-				+ System.lineSeparator()+ sections.get(i).getText() + System.lineSeparator() + "},";
+						+ System.lineSeparator()+ sections.get(i).getText() + System.lineSeparator() + "},";
 			}
 		}
 		if(sections.get(sections.size()-1)!=null) {
@@ -53,6 +53,11 @@ public class MyPanels extends JPanel {
 		}
 		return ch;
 	}
-
+	public void annuler() {
+		for (MySection s: sections) {
+			s.annuler();
+		}
 
 	}
+
+}

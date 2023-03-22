@@ -17,9 +17,11 @@ public class MySection extends JPanel {
 
 	private JTextField title=new JTextField();
 	private JTextField qty=new JTextField();
+	private String titre;
 
 	public MySection(String titre, String qte) {
 		super();
+		this.titre=titre;
 		setLayout(new GridLayout(0, 2));
 		this.title.setText(titre);
 		this.qty.setText(qte);
@@ -46,6 +48,20 @@ public class MySection extends JPanel {
 
 	}
 
+	/*public void checkQte() {
+		//il faut comparer la quantité entrée et la quantité stockée
+		//si on a pas assez de stock
+		if(qte<=0) {
+			System.out.println("quantité insuffisante");
+		//si on en a assez, alors on déduit du stock
+		} else {
+			qte+=-x;
+			System.out.println("commande préparable");
+		}
+
+	}
+	 */
+
 	public void listen() {
 		title.addMouseListener(new MouseAdapter() {
 			@Override
@@ -61,13 +77,13 @@ public class MySection extends JPanel {
 		});
 		//pour avoir que des entiers
 		qty.addKeyListener(new KeyAdapter() {
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        //ecoute un caractère par un caractère
-		        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
-		            e.consume();  // ignorer l'événement
-		        }
-		     }
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				//ecoute un caractère par un caractère
+				if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+					e.consume();  // ignorer l'événement
+				}
+			}
 		});
 	}
 
@@ -79,7 +95,20 @@ public class MySection extends JPanel {
 			return ("\"description\": \"" + title.getText()+ "\","+ System.lineSeparator()+
 					"\"qty\": "+ qty.getText())	+"    ";
 		}
-	
+
 	}
+
+	public JTextField getQty() {
+		return qty;
+	}
+	public JTextField getTitle() {
+		return title;
+	}
+
+	public void annuler() {
+		title.setText(titre);
+		qty.setText("Quantité:" );
+	}
+
 }
 
