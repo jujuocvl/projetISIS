@@ -6,6 +6,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import org.json.simple.parser.ParseException;
+
 public class Controller extends AbstractAction {
 
 	private final MyFrame frame;
@@ -32,18 +34,40 @@ public class Controller extends AbstractAction {
 				e1.printStackTrace();
 			} 
 			//hashmap recette id avec quantité
-			
+
 			break;
 
 		case "Annuler le menu":
 			System.out.println("Commande annulée");
 			frame.annuler();
+
+
+			break;
+
+		case "Préparer la commande":
+			
+			try {
+				CheckQty comparateur = new CheckQty();
+				comparateur.setResto(frame.getPanels().get(0).getPlats());
+				comparateur.setCmd(frame.getLecteur().lireEntrées());
+				comparateur.CheckQty();
+				comparateur.setResto(frame.getPanels().get(1).getPlats());
+				comparateur.setCmd(frame.getLecteur().lirePlats());
+				comparateur.CheckQty();
+				comparateur.setResto(frame.getPanels().get(2).getPlats());
+				comparateur.setCmd(frame.getLecteur().lireDesserts());
+				comparateur.CheckQty();
+			} catch (QtyException | IOException | ParseException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1);
+			}
 			
 			
 			break;
 
-		}
-		}
+	}
 }
-	
+
+}
+
 

@@ -1,9 +1,9 @@
 
-public class MainCourse extends Plats{
-	public MainCourse(int qty, int id, String nom) {
+public class MainCourse extends Plat{
+	public MainCourse(int qty, long id, String nom) {
 		super(qty, id, nom);
 	}
-	public MainCourse(int qty, int id) {
+	public MainCourse(int qty, long id) {
 		super(qty, id);
 	}
 

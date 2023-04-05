@@ -16,6 +16,7 @@ public class MyFrame extends JFrame{
 	private JPanel container = new JPanel();
 	private Controller controller=new Controller(this);
 	private ArrayList<MyPanels> panels = new ArrayList<MyPanels>();
+	private LecteurDuJson lecteur = new LecteurDuJson();
 
 	public MyFrame() {
 		super();
@@ -38,6 +39,7 @@ public class MyFrame extends JFrame{
 		JPanel panelbtn = new JPanel();
 		JButton valid = new JButton("Valider le menu");
 		JButton annul = new JButton("Annuler le menu");
+		JButton comd = new JButton("Préparer la commande");
 
 		valid.setOpaque(true);
 		valid.setBorderPainted(false);
@@ -52,9 +54,16 @@ public class MyFrame extends JFrame{
 
 		panelbtn.add(valid);
 		panelbtn.add(annul);
+		panelbtn.add(comd);
+		
+		comd.setOpaque(true);
+		comd.setBorderPainted(false);
+		comd.setBackground(Color.MAGENTA);
+		comd.setFont(font2);
 
 		valid.addActionListener(controller);
-		annul.addActionListener(controller); 
+		annul.addActionListener(controller);
+		comd.addActionListener(controller);
 
 		container.setLayout(new GridLayout(0,1));
 		container.add(restaurant);
@@ -88,6 +97,14 @@ public class MyFrame extends JFrame{
 		}
 		// TODO Auto-generated method stub
 		
+	}
+
+	public ArrayList<MyPanels> getPanels() {
+		return panels;
+	}
+
+	public LecteurDuJson getLecteur() {
+		return lecteur;
 	}
 
 }

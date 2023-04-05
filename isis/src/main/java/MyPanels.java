@@ -15,7 +15,8 @@ public class MyPanels extends JPanel {
 	private String qte; //attribut classe
 	private ArrayList<MySection> sections;
 	private int nb = 3;
-
+	private ArrayList<Plat> plats=new ArrayList();
+	
 	public MyPanels(String title, String qte) {
 		super();
 		this.title = title; //on instancie
@@ -39,6 +40,30 @@ public class MyPanels extends JPanel {
 		this.add(center, BorderLayout.CENTER);
 		this.add(new JLabel(title), BorderLayout.NORTH); // mettre un JLabel
 
+	}
+	public ArrayList<Plat> getPlats(){
+		if(title.equals("Entrées")) {
+			for (int i=0;i<nb;i++) {
+				if(!sections.get(i).getQty().getText().equals("Quantité :")) {
+				plats.add(new Starter(Integer.valueOf(sections.get(i).getQty().getText()),i+1,sections.get(i).getTitle().getText()));
+			}
+			}
+		}
+		if(title.equals("Plats")) {
+			for (int i=0;i<nb;i++) {
+				if(!sections.get(i).getQty().getText().equals("Quantité :")) {
+
+				plats.add(new Plat(Integer.valueOf(sections.get(i).getQty().getText()),i+1,sections.get(i).getTitle().getText()));
+			}}
+		}
+		if(title.equals("Desserts")) {
+			for (int i=0;i<nb;i++) {
+				if(!sections.get(i).getQty().getText().equals("Quantité :")) {
+
+				plats.add(new Dessert(Integer.valueOf(sections.get(i).getQty().getText()),i+1,sections.get(i).getTitle().getText()));
+			}}
+		}
+		return plats;
 	}
 	public String getText() {
 		String ch = ("\"" + title + "\": [");

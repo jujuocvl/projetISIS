@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,7 +16,6 @@ public class MySection extends JPanel {
 	private JTextField title=new JTextField();
 	private JTextField qtyresto=new JTextField(); //quantité plats
 	private String titre;
-	ArrayList<Order> recettes = new ArrayList<Order>();
 
 	public MySection(String titre, String qty) {
 		super();
@@ -46,6 +46,7 @@ public class MySection extends JPanel {
 
 	}
 
+	
 	public void listen() {
 		title.addMouseListener(new MouseAdapter() {
 			@Override

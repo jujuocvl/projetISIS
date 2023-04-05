@@ -1,9 +1,9 @@
 
-public class Starter extends Plats{
-	public Starter(int qty, int id, String nom) {
+public class Starter extends Plat{
+	public Starter(int qty, long id, String nom) {
 		super(qty, id, nom);
 	}
-	public Starter(int qty, int id) {
+	public Starter(int qty, long id) {
 		super(qty, id);
 	}
 }

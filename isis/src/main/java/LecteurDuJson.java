@@ -8,14 +8,15 @@ import org.json.simple.parser.ParseException;
 
 public class LecteurDuJson {
 	private final String FILENAME = "restaurant_exemple_commande.json";
-
+	private ArrayList<Plat> entrees;
+	private ArrayList<Plat> plats;
+	private ArrayList<Plat> desserts;
 	public LecteurDuJson() {
-
 	}
 
 	// ENTREES
-	public ArrayList<Order> lireEntrées(String file) throws FileNotFoundException, IOException, ParseException {
-		ArrayList<Order> listOrder = new ArrayList<Order>();
+	public ArrayList<Plat> lireEntrées() throws FileNotFoundException, IOException, ParseException {
+		entrees = new ArrayList<Plat>();
 		JSONParser jsonP = new JSONParser(); // outil pour lire le fichier
 
 		// creer objet json avec ce que le parser à lu
@@ -26,52 +27,52 @@ public class LecteurDuJson {
 		Iterator<JSONObject> entreelist = starters.iterator();
 		while (entreelist.hasNext()) {
 			JSONObject entree = entreelist.next();
-			int id =  Integer.valueOf((String)platsOb.get("id"));
-			int qty = Integer.valueOf((String)platsOb.get("qty")) ;
-			plats.add(new MainCourse(qty, id));
+			long id= Long.parseLong((String)entree.get("id"));
+			int qty = Integer.valueOf((String)entree.get("qty")) ;
+			entrees.add(new MainCourse(qty, id));
 		}
 
-		return listOrder;
+		return entrees;
 	}
 
 	// MAIN COURSES
-	public ArrayList<Order> lirePlats(String file) throws FileNotFoundException, IOException, ParseException {
-		ArrayList<Order> listOrder = new ArrayList<Order>();
+	public ArrayList<Plat> lirePlats() throws FileNotFoundException, IOException, ParseException {
+		plats = new ArrayList<Plat>();
 		JSONParser jsonP = new JSONParser();
 
 		JSONObject jsonObject = (JSONObject) jsonP.parse(new FileReader(FILENAME));
 
 		JSONArray courses = (JSONArray) jsonObject.get("main_courses");
 
-		Iterator<JSONObject> entreelist = courses.iterator();
-		while (entreelist.hasNext()) {
-			JSONObject entree = entreelist.next();
-			Long id = (Long) entree.get("id");
-			String description = (String) entree.get("description");
-			listOrder.add(new Order(id, description));
+		Iterator<JSONObject> platlist = courses.iterator();
+		while (platlist.hasNext()) {
+			JSONObject plat = platlist.next();
+			int id =  Integer.valueOf((String)plat.get("id"));
+			int qty = Integer.valueOf((String)plat.get("qty")) ;
+			plats.add(new MainCourse(qty, id));
 		}
 
-		return listOrder;
+		return plats;
 	}
 
 	// DESSERTS
-	public ArrayList<Order> lireDesserts(String file) throws FileNotFoundException, IOException, ParseException {
-		ArrayList<Order> listOrder = new ArrayList<Order>();
+	public ArrayList<Plat> lireDesserts() throws FileNotFoundException, IOException, ParseException {
+		desserts = new ArrayList<Plat>();
 		JSONParser jsonP = new JSONParser(); 
 
 		JSONObject jsonObject = (JSONObject) jsonP.parse(new FileReader(FILENAME));
 
-		JSONArray desserts = (JSONArray) jsonObject.get("main_courses");
+		JSONArray sucree = (JSONArray) jsonObject.get("main_courses");
 
-		Iterator<JSONObject> entreelist = desserts.iterator();
-		while (entreelist.hasNext()) {
-			JSONObject entree=entreelist.next();
-			Long id = (Long) entree.get("id");
-			String description = (String) entree.get("description");
-			listOrder.add(new Order(id,description));
+		Iterator<JSONObject> dessertlist = sucree.iterator();
+		while (dessertlist.hasNext()) {
+			JSONObject dessert=dessertlist.next();
+			int id =  Integer.valueOf((String)dessert.get("id"));
+			int qty = Integer.valueOf((String)dessert.get("qty")) ;
+			desserts.add(new MainCourse(qty, id));
 		}
 
 
-		return listOrder;
+		return desserts;
 	}
 }
