@@ -1,8 +1,5 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -16,51 +13,38 @@ public class MySection extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField title=new JTextField();
-	private JTextField qty=new JTextField();
+	private JTextField qtyresto=new JTextField(); //quantité plats
 	private String titre;
+	ArrayList<Order> recettes = new ArrayList<Order>();
 
-	public MySection(String titre, String qte) {
+	public MySection(String titre, String qty) {
 		super();
 		this.titre=titre;
 		setLayout(new GridLayout(0, 2));
 		this.title.setText(titre);
-		this.qty.setText(qte);
+		this.qtyresto.setText(qty);
 		setUp();
 	}
 
 	public void setUp() {
 
 		add(title);
-		add(qty);
+		add(qtyresto);
 
 		if(title.getText().equals("Entrées")) {
 			title.setBackground(Color.yellow);
-			qty.setBackground(Color.yellow);
+			qtyresto.setBackground(Color.yellow);
 		}
 		if(title.getText().equals("Plats")) {
 			title.setBackground(Color.orange);
-			qty.setBackground(Color.orange);
+			qtyresto.setBackground(Color.orange);
 		}
 		if(title.getText().equals("Desserts")) {
 			title.setBackground(Color.pink);
-			qty.setBackground(Color.pink);
+			qtyresto.setBackground(Color.pink);
 		}
 
 	}
-
-	/*public void checkQte() {
-		//il faut comparer la quantité entrée et la quantité stockée
-		//si on a pas assez de stock
-		if(qte<=0) {
-			System.out.println("quantité insuffisante");
-		//si on en a assez, alors on déduit du stock
-		} else {
-			qte+=-x;
-			System.out.println("commande préparable");
-		}
-
-	}
-	 */
 
 	public void listen() {
 		title.addMouseListener(new MouseAdapter() {
@@ -69,14 +53,14 @@ public class MySection extends JPanel {
 				title.setText("");
 			}
 		});
-		qty.addMouseListener(new MouseAdapter() {
+		qtyresto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {			
-				qty.setText("");
+				qtyresto.setText("");
 			}
 		});
 		//pour avoir que des entiers
-		qty.addKeyListener(new KeyAdapter() {
+		qtyresto.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				//ecoute un caractère par un caractère
@@ -88,18 +72,18 @@ public class MySection extends JPanel {
 	}
 
 	public String getText() {
-		if(qty.getText().equals("Quantité :")|| title.getText().equals("Entrées")||title.getText().equals("Plats")||title.getText().equals("Desserts")) {
+		if(qtyresto.getText().equals("Quantité :")|| title.getText().equals("Entrées")||title.getText().equals("Plats")||title.getText().equals("Desserts")) {
 			return null;
 		}
 		else{
 			return ("\"description\": \"" + title.getText()+ "\","+ System.lineSeparator()+
-					"\"qty\": "+ qty.getText())	+"    ";
+					"\"qty\": "+ qtyresto.getText())	+"    ";
 		}
 
 	}
 
 	public JTextField getQty() {
-		return qty;
+		return qtyresto;
 	}
 	public JTextField getTitle() {
 		return title;
@@ -107,8 +91,10 @@ public class MySection extends JPanel {
 
 	public void annuler() {
 		title.setText(titre);
-		qty.setText("Quantité:" );
+		qtyresto.setText("Quantité:" );
 	}
+	
+	//public class ArrayList<Order> recettes;
 
 }
 
