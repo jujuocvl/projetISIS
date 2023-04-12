@@ -66,9 +66,9 @@ public class MyFrame extends JFrame{
 		container.setLayout(new GridLayout(0,1));
 		container.add(restaurant);
 
-		panels.add(new MyPanels("Entrées","Quantité :"));
-		panels.add(new MyPanels("Plats", "Quantité :"));
-		panels.add(new MyPanels("Desserts", "Quantité :"));
+		panels.add(new MyPanels("starters","Quantité :"));
+		panels.add(new MyPanels("main_courses", "Quantité :"));
+		panels.add(new MyPanels("desserts", "Quantité :"));
 
 		for (int i=0; i<3; i++) {
 			container.add(panels.get(i));
@@ -86,7 +86,7 @@ public class MyFrame extends JFrame{
 			//ch+= System.lineSeparator() +"\t " + panels.get(i).getText() + ",";
 			ch+="\t " + panels.get(i).getText() + ",";
 		}
-		ch=ch.substring(0, ch.length()-2)+"}";
+		ch=ch.substring(0, ch.length()-2)+"]}";
 		return ch;
 	}
 

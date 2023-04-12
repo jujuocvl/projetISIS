@@ -31,15 +31,15 @@ public class MySection extends JPanel {
 		add(title);
 		add(qtyresto);
 
-		if(title.getText().equals("Entrées")) {
+		if(title.getText().equals("starters")) {
 			title.setBackground(Color.yellow);
 			qtyresto.setBackground(Color.yellow);
 		}
-		if(title.getText().equals("Plats")) {
+		if(title.getText().equals("main_courses")) {
 			title.setBackground(Color.orange);
 			qtyresto.setBackground(Color.orange);
 		}
-		if(title.getText().equals("Desserts")) {
+		if(title.getText().equals("desserts")) {
 			title.setBackground(Color.pink);
 			qtyresto.setBackground(Color.pink);
 		}
@@ -81,7 +81,7 @@ public class MySection extends JPanel {
 					"\"qty\": "+ qtyresto.getText())	+"    ";
 		}
 */
-		if(qtyresto.getText().equals("Quantité :")|| title.getText().equals("Entrées")||title.getText().equals("Plats")||title.getText().equals("Desserts")) {
+		if(qtyresto.getText().equals("Quantité :")|| title.getText().equals("starters")||title.getText().equals("main_courses")||title.getText().equals("desserts")) {
 			return null;
 		}
 		else{

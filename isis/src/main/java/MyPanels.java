@@ -26,7 +26,7 @@ public class MyPanels extends JPanel {
 		setLayout(new BorderLayout());
 		JPanel center = new JPanel(new GridLayout(0,1)); //rempli la première colonne puis la deuxième
 
-		if(title.equals("Entrées") || (title.equals("Desserts"))) {
+		if(title.equals("starters") || (title.equals("desserts"))) {
 			nb=4;
 		}
 
@@ -42,21 +42,21 @@ public class MyPanels extends JPanel {
 
 	}
 	public ArrayList<Plat> getPlats(){
-		if(title.equals("Entrées")) {
+		if(title.equals("starters")) {
 			for (int i=0;i<nb;i++) {
 				if(!sections.get(i).getQty().getText().equals("Quantité :")) {
 				plats.add(new Starter(Integer.valueOf(sections.get(i).getQty().getText()),i+1,sections.get(i).getTitle().getText()));
 			}
 			}
 		}
-		if(title.equals("Plats")) {
+		if(title.equals("main_courses")) {
 			for (int i=0;i<nb;i++) {
 				if(!sections.get(i).getQty().getText().equals("Quantité :")) {
 
 				plats.add(new Plat(Integer.valueOf(sections.get(i).getQty().getText()),i+1,sections.get(i).getTitle().getText()));
 			}}
 		}
-		if(title.equals("Desserts")) {
+		if(title.equals("desserts")) {
 			for (int i=0;i<nb;i++) {
 				if(!sections.get(i).getQty().getText().equals("Quantité :")) {
 
@@ -78,9 +78,11 @@ public class MyPanels extends JPanel {
 						+ sections.get(i).getText() + "},";
 			}
 		}
-		if(sections.get(sections.size()-1)!=null) {
-			ch=ch.substring(0, ch.length()-2)+"]";	
+		/*if(sections.get(sections.size()-1)!=null) {
+			ch=ch.substring(0, ch.length()-1)+"]";	
 		}
+		*/
+		ch=ch.substring(0, ch.length()-1)+"]";
 		return ch;
 	}
 	public void annuler() {

@@ -7,7 +7,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LecteurDuJson {
-	private final String FILENAME = "restaurant_exemple_commande.json";
+	// /!/ CHANGER A CHAQUE FOIS CE NOM
+	//private final String FILENAME = "order_1681303275804.json";
 	private ArrayList<Plat> entrees;
 	private ArrayList<Plat> plats;
 	private ArrayList<Plat> desserts;
@@ -16,6 +17,13 @@ public class LecteurDuJson {
 
 	// ENTREES
 	public ArrayList<Plat> lireEntrées() throws FileNotFoundException, IOException, ParseException {
+		File dir = new File("/Users/julieorcival/git/repository2/isis");
+		File[] foundFiles = dir.listFiles(new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				return name.startsWith("order_") && name.endsWith(".json");
+			}
+		});
+		FILENAME = foundFiles[0].getName().toString();
 		entrees = new ArrayList<Plat>();
 		JSONParser jsonP = new JSONParser(); // outil pour lire le fichier
 

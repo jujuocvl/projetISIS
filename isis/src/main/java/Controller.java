@@ -23,7 +23,7 @@ public class Controller extends AbstractAction {
 		// Gestion de l'événement selon le bouton cliqué
 		switch (button.getText()) {
 		case "Valider le menu":
-			System.out.println("Menu validée, voir fichier json dans les téléchargements.");
+			System.out.println("Menu validée, voir fichier json dans git et repository 2.");
 			FileWriter file;
 			try {
 				file = new FileWriter("menu.json");
