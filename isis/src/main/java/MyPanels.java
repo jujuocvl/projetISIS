@@ -68,9 +68,14 @@ public class MyPanels extends JPanel {
 	public String getText() {
 		String ch = ("\"" + title + "\": [");
 		for (int i=0; i<nb; i++) {
-			if(sections.get(i).getText()!=null) {
+			/*if(sections.get(i).getText()!=null) {
 				ch+= System.lineSeparator() +"\t {" + System.lineSeparator() + "\t \t" + "\"id\": " + Integer.toString(i+1) +","
 						+ System.lineSeparator()+ sections.get(i).getText() + System.lineSeparator() + "},";
+			}
+			*/
+			if(sections.get(i).getText()!=null) {
+				ch+= "\t {" + "\t \t" + "\"id\": " + Integer.toString(i+1) +","
+						+ sections.get(i).getText() + "},";
 			}
 		}
 		if(sections.get(sections.size()-1)!=null) {

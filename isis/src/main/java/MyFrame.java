@@ -1,14 +1,12 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class MyFrame extends JFrame{
 
@@ -85,7 +83,8 @@ public class MyFrame extends JFrame{
 	public String getText() {
 		String ch = ("{");
 		for (int i=0; i<3; i++) {
-			ch+= System.lineSeparator() +"\t " + panels.get(i).getText() + ",";
+			//ch+= System.lineSeparator() +"\t " + panels.get(i).getText() + ",";
+			ch+="\t " + panels.get(i).getText() + ",";
 		}
 		ch=ch.substring(0, ch.length()-2)+"}";
 		return ch;

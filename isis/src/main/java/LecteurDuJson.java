@@ -27,8 +27,10 @@ public class LecteurDuJson {
 		Iterator<JSONObject> entreelist = starters.iterator();
 		while (entreelist.hasNext()) {
 			JSONObject entree = entreelist.next();
-			long id= Long.parseLong((String)entree.get("id"));
-			int qty = Integer.valueOf((String)entree.get("qty")) ;
+			//System.out.println(entree);
+			//System.out.println(entree.get("id"));
+			long id= (long)entree.get("id");
+			int qty = Long.valueOf((long)entree.get("qty")).intValue() ;
 			entrees.add(new MainCourse(qty, id));
 		}
 
@@ -47,8 +49,8 @@ public class LecteurDuJson {
 		Iterator<JSONObject> platlist = courses.iterator();
 		while (platlist.hasNext()) {
 			JSONObject plat = platlist.next();
-			int id =  Integer.valueOf((String)plat.get("id"));
-			int qty = Integer.valueOf((String)plat.get("qty")) ;
+			long id= (long)plat.get("id");
+			int qty = Long.valueOf((long)plat.get("qty")).intValue() ;
 			plats.add(new MainCourse(qty, id));
 		}
 
@@ -67,8 +69,8 @@ public class LecteurDuJson {
 		Iterator<JSONObject> dessertlist = sucree.iterator();
 		while (dessertlist.hasNext()) {
 			JSONObject dessert=dessertlist.next();
-			int id =  Integer.valueOf((String)dessert.get("id"));
-			int qty = Integer.valueOf((String)dessert.get("qty")) ;
+			long id= (long)dessert.get("id");
+			int qty = Long.valueOf((long)dessert.get("qty")).intValue() ;
 			desserts.add(new MainCourse(qty, id));
 		}
 

@@ -26,14 +26,14 @@ public class Controller extends AbstractAction {
 			System.out.println("Menu validée, voir fichier json dans les téléchargements.");
 			FileWriter file;
 			try {
-				file = new FileWriter("orders.json");
+				file = new FileWriter("menu.json");
+				//fichier = dans repository 2 du fichier git
 				file.write(frame.getText());
 				file.close();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} 
-			//hashmap recette id avec quantité
 
 			break;
 

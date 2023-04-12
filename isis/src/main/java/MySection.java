@@ -73,15 +73,25 @@ public class MySection extends JPanel {
 	}
 
 	public String getText() {
-		if(qtyresto.getText().equals("Quantité :")|| title.getText().equals("Entrées")||title.getText().equals("Plats")||title.getText().equals("Desserts")) {
+		/*if(qtyresto.getText().equals("Quantité :")|| title.getText().equals("Entrées")||title.getText().equals("Plats")||title.getText().equals("Desserts")) {
 			return null;
 		}
 		else{
 			return ("\"description\": \"" + title.getText()+ "\","+ System.lineSeparator()+
 					"\"qty\": "+ qtyresto.getText())	+"    ";
 		}
-
+*/
+		if(qtyresto.getText().equals("Quantité :")|| title.getText().equals("Entrées")||title.getText().equals("Plats")||title.getText().equals("Desserts")) {
+			return null;
+		}
+		else{
+			return ("\"description\": \"" + title.getText()+ "\","+
+					"\"qty\": "+ qtyresto.getText())	+"    ";
+		}
 	}
+	
+	
+		
 
 	public JTextField getQty() {
 		return qtyresto;
