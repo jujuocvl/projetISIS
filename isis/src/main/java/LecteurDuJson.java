@@ -7,8 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LecteurDuJson {
-	// /!/ CHANGER A CHAQUE FOIS CE NOM
-	//private final String FILENAME = "order_1681303275804.json";
+	private String FILENAME ;
 	private ArrayList<Plat> entrees;
 	private ArrayList<Plat> plats;
 	private ArrayList<Plat> desserts;
@@ -17,13 +16,19 @@ public class LecteurDuJson {
 
 	// ENTREES
 	public ArrayList<Plat> lireEntrées() throws FileNotFoundException, IOException, ParseException {
-		File dir = new File("/Users/julieorcival/git/repository2/isis");
-		File[] foundFiles = dir.listFiles(new FilenameFilter() {
-			public boolean accept(File dir, String name) {
-				return name.startsWith("order_") && name.endsWith(".json");
+		String directoryPath = "/Users/julieorcival/git/repository2/isis";
+
+		// liste pour stocker les noms des fichiers qui correspondent au critère 
+		ArrayList<String> matchingFiles = new ArrayList<>();
+		File directory = new File(directoryPath);
+		File[] files = directory.listFiles();
+		for (File file : files) {
+			if (file.isFile() && file.getName().startsWith("order_") && file.getName().endsWith(".json")) {
+				matchingFiles.add(file.getName());
+				FILENAME = file.getName();
 			}
-		});
-		FILENAME = foundFiles[0].getName().toString();
+		}
+
 		entrees = new ArrayList<Plat>();
 		JSONParser jsonP = new JSONParser(); // outil pour lire le fichier
 
